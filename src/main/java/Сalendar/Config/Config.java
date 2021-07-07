@@ -1,7 +1,7 @@
 package Сalendar.Config;
 
 
-import Сalendar.UserInterface.UIMenu;
+import Сalendar.UserInterface.UIOutput.UIMenu;
 
 
 public class Config {
@@ -9,6 +9,4 @@ public class Config {
     public static UIMenu setMenuLanguage(Languages languages) {
         return languages.getMenu();
     }
-
-
 }

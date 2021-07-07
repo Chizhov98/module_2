@@ -1,9 +1,9 @@
 package Сalendar.Config;
 
 import lombok.Getter;
-import Сalendar.UserInterface.Impl.EnglishMenu;
-import Сalendar.UserInterface.Impl.RussianMenu;
-import Сalendar.UserInterface.UIMenu;
+import Сalendar.UserInterface.UIOutput.Impl.EnglishMenu;
+import Сalendar.UserInterface.UIOutput.Impl.RussianMenu;
+import Сalendar.UserInterface.UIOutput.UIMenu;
 @Getter
 public enum Languages {
     RUSSIAN (new RussianMenu()),

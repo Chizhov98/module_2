@@ -1,7 +1,7 @@
-package Сalendar.UserInterface.Impl;
+package Сalendar.UserInterface.UIOutput.Impl;
 
-import Сalendar.Exeptions.MyExeption;
-import Сalendar.UserInterface.UIMenu;
+import Сalendar.Config.Exeptions.MyExeption;
+import Сalendar.UserInterface.UIOutput.UIMenu;
 
 
 public class RussianMenu implements UIMenu {
@@ -15,7 +15,7 @@ public class RussianMenu implements UIMenu {
                 "4. Отсортировать перечень дат.\n" +
                 "5. Сменить формат представления дат.\n" +
                 "6. Сменить язык.\n" +
-                "7. Завершить программу.");
+                "0. Завершить программу.");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RussianMenu implements UIMenu {
                 "2. м/д/гггг - 3/4/2021\n" +
                 "3. ммм-д-гг - Март-4-21\n" +
                 "4. дд-ммм-гггг 00:00 - 09-Апрель-1789 00:00\n" +
-                "5. Вернуться в главное меню\n");
+                "0. Вернуться в главное меню\n");
     }
 
     @Override
@@ -35,14 +35,14 @@ public class RussianMenu implements UIMenu {
         System.out.println(str + "\n\n");
         System.out.println("Желаете подолжить:\n" +
                 "1. Да(вернуться в главное меню)\n" +
-                "2. Нет(Завершить программу)\n");
+                "0. Нет(Завершить программу)\n");
     }
 
     @Override
     public void exceptionSout(MyExeption exception) {
         System.out.println("ОШИБКА : " + exception.getRussianMessage());
         System.out.println("1. Вернуться в главное меню\n" +
-                "2. Завершить программы\n");
+                "0. Завершить программы\n");
     }
 
     @Override
@@ -50,7 +50,8 @@ public class RussianMenu implements UIMenu {
         System.out.println("Please chose one of languages \n" +
                 "Пожалуйста, выбери язык\n" +
                 "1. Russian - Русский \n" +
-                "2. English - Англиский \n");
+                "2. English - Англиский \n" +
+                "0. Exit program - Завершить программу");
     }
 
 
