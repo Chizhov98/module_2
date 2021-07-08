@@ -1,5 +1,7 @@
 package Сalendar.Scanner;
 
+import Сalendar.Config.Config;
+import Сalendar.Config.DateFormats;
 import Сalendar.Config.Languages;
 import Сalendar.UserInterface.UINavigator.MenuNavigator;
 
@@ -14,28 +16,60 @@ public class MyScanner {
     private static int intChose;
     private static String data;
 
-    public static long readData(){
+    public static long readData() {
         data = in.nextLine();
         return 0;
     }
 
-    public static Languages setLanguage() {
+    public DateFormats setDateFormat() {
+        switch (in.nextInt()) {
+            case 1:
+                return (DateFormats.DD_MM_YY);
+            /*case 2:
+                return (DateFormats.M_D_YYYY);
+            case 3:
+                return (DateFormats.MMM_D_YY);
+            case 4:
+                return (DateFormats.DD_MMM_YYYY_Hours_MINUTES);*/
+            case 0:
+                System.exit(0);
+            default:
+                return setDateFormat();
+        }
+
+    }
+
+    public boolean continua() {
+
         intChose = in.nextInt();
         switch (intChose) {
             case 1:
-                return Languages.RUSSIAN;
-            case 2:
-                return Languages.ENGLISH;
+                return true;
             case 0:
                 System.exit(0);
             default:
                 MenuNavigator.menu.exceptionSout(ITEM_DOES_NOT_EXIST);
-                MenuNavigator.menu.choseLanguage();
-                return setLanguage();
+                return continua();
         }
     }
 
-    public static int mainMenu() {
-        return in.nextInt();
+        public Languages setLanguage () {
+            intChose = in.nextInt();
+            switch (intChose) {
+                case 1:
+                    return Languages.RUSSIAN;
+                case 2:
+                    return Languages.ENGLISH;
+                case 0:
+                    System.exit(0);
+                default:
+                    MenuNavigator.menu.exceptionSout(ITEM_DOES_NOT_EXIST);
+                    MenuNavigator.menu.choseLanguage();
+                    return setLanguage();
+            }
+        }
+
+        public int mainMenu () {
+            return in.nextInt();
+        }
     }
-}

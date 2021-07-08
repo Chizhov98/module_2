@@ -9,9 +9,11 @@ public interface UIMenu {
 
     void mainMenu();
 
-    void choseFormatOfData();
+    void choseFormatOfDate();
 
     void soutResalt(String str);
+
+    void operationComplete();
 
     void exceptionSout(MyExeption exception);
 

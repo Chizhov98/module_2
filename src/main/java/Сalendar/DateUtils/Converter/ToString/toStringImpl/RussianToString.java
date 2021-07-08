@@ -4,8 +4,6 @@ import Сalendar.Config.Months;
 import Сalendar.DateUtils.Converter.ToString.ConverterToString;
 import Сalendar.DateUtils.Converter.ToString.ConverterUtils;
 
-import java.time.Month;
-
 public class RussianToString implements ConverterToString {
     private String dateResult;
     private int[] dateInArray;
@@ -52,7 +50,7 @@ public class RussianToString implements ConverterToString {
     @Override
     public String toStringThirdFormat(long num) {
         newInitialize(num);
-        dateResult+=getMonthName(dateInArray[5]) + "-" + dateInArray[4] + "-";
+        dateResult += getMonthName(dateInArray[5]) + "-" + dateInArray[4] + "-";
         if (dateInArray[6] >= 100) {
             return dateResult += (dateInArray[6] % 100);
         }
