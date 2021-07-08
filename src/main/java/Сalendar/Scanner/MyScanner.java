@@ -12,6 +12,12 @@ public class MyScanner {
 
     static private Scanner in = new Scanner(System.in);
     private static int intChose;
+    private static String data;
+
+    public static long readData(){
+        data = in.nextLine();
+        return 0;
+    }
 
     public static Languages setLanguage() {
         intChose = in.nextInt();
