@@ -1,5 +1,6 @@
-package Сalendar.DateUtils.Converter.FromString;
+package Сalendar.FormatValidators;
 
 public interface Validator {
     boolean validator(String str);
+
 }

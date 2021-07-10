@@ -1,6 +1,4 @@
-package Сalendar.DateUtils.Converter.FromString.FormatValidators;
-
-import Сalendar.DateUtils.Converter.FromString.Validator;
+package Сalendar.FormatValidators;
 
 public class SecondFormatValidator implements Validator {
     @Override

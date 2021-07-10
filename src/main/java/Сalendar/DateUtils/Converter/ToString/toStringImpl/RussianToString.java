@@ -8,7 +8,6 @@ public class RussianToString implements ConverterToString {
     private String dateResult;
     private int[] dateInArray;
 
-
     private void newInitialize(long num) {
         dateResult = "";
         dateInArray = ConverterUtils.longDecoder(num);
@@ -58,7 +57,7 @@ public class RussianToString implements ConverterToString {
     }
 
     @Override
-    public String toStringFifthFormat(long num) {
+    public String toStringForthFormat(long num) {
         newInitialize(num);
         dateResult += getMonthName(dateInArray[5]) + "-" + dateInArray[4] + "-";
         if (dateInArray[6] <= 1000) {

@@ -1,5 +1,7 @@
 package Сalendar.DateUtils.Converter.ToString;
 
+import Сalendar.UserInterface.UINavigator.MenuNavigator;
+
 public class ConverterUtils {
 
     public static int[] longDecoder(long num) {
@@ -10,7 +12,7 @@ public class ConverterUtils {
         num /= 60;
         date[2] = (int) (num % 60);//min
         num /= 60;
-        date[3] = (int) (num % 24)+1;//h
+        date[3] = (int) (num % 24) + 1;//h
         int[] temp = getMonth(num /= 24);
         date[4] = temp[2];//d
         date[5] = temp[1];//mon
@@ -55,4 +57,20 @@ public class ConverterUtils {
         }
         return new int[]{yearCounter, monthNum, (int) days};
     }
+
+    public static String resultToString(long result) {
+        switch (MenuNavigator.getConfig().getFormat().getId()) {
+            case 1:
+                return MenuNavigator.converter.toStringFirstFormat(result);
+            case 2:
+                return MenuNavigator.converter.toStringSecondFormat(result);
+            case 3:
+                return MenuNavigator.converter.toStringThirdFormat(result);
+            case 4:
+                return MenuNavigator.converter.toStringForthFormat(result);
+            default:
+                return "ERROR";
+        }
+    }
+
 }

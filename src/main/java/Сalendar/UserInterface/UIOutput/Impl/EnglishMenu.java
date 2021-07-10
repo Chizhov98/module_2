@@ -9,10 +9,11 @@ public class EnglishMenu implements UIMenu {
         System.out.println("    Maine menu\n" +
                 "Please select the menu item you need.\n" +
                 "1. Find the difference between dates.\n" +
-                "2. Subtract the specified time from the date.\n" +
-                "3. Sort the list of dates.\n" +
-                "4. Change date format.\n" +
-                "5. Change language.\n" +
+                "2. Add time to date\n" +
+                "3. Div time from date\n" +
+                "4. Sort the list of dates.\n" +
+                "5. Change date format.\n" +
+                "6. Change language.\n" +
                 "0. Exit program.");
     }
 
@@ -49,6 +50,78 @@ public class EnglishMenu implements UIMenu {
         System.out.println("ERROR : " + exception.getEnglishMessage());
         System.out.println("1. Return to main menu\n" +
                 "0. Exit program \n");
+    }
+
+    @Override
+    public void addTime() {
+        System.out.println("What time do you want add to date");
+
+    }
+
+    @Override
+    public void divTime() {
+        System.out.println("What time do you want to div from date");
+    }
+
+    @Override
+    public void hours() {
+        System.out.print("Hours");
+    }
+
+    @Override
+    public void minutes() {
+        System.out.print("Minutes");
+    }
+
+    @Override
+    public void seconds() {
+        System.out.print("Seconds");
+    }
+
+    @Override
+    public void days() {
+        System.out.print("Days");
+    }
+
+    @Override
+    public void month() {
+        System.out.print("Months");
+    }
+
+    @Override
+    public void years() {
+        System.out.print("Years");
+    }
+
+    @Override
+    public void operation() {
+        System.out.println("What is the date did you want to work with ");
+    }
+
+    @Override
+    public void toSoutForParts(int[] time) {
+        System.out.println("Difference by two dates is :\n"
+                + time[6] + " years" + time[5] + "months" + time[4] + "days" + time[3] + "hours" + time[2] + "minutes" + time[1] + "seconds");
+    }
+
+    @Override
+    public void differenceMenuFirst() {
+        System.out.println("Enter first date");
+    }
+
+    @Override
+    public void differenceMenuSecond() {
+        System.out.println("Enter second date");
+    }
+
+    @Override
+    public void sortFirstMenu() {
+        System.out.println("How much date do you want sorted?");
+    }
+
+    @Override
+    public void sortSecondMenu(int i) {
+        System.out.println("Enter date №" + i);
     }
 
     @Override

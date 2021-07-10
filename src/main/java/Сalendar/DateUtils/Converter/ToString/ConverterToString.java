@@ -8,7 +8,7 @@ public interface ConverterToString {
 
     String toStringThirdFormat(long num);
 
-    String toStringFifthFormat(long num);
+    String toStringForthFormat(long num);
 
     String getMonthName(int monthNum);
 

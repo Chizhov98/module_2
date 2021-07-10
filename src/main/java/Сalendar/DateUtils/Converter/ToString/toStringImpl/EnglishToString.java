@@ -58,7 +58,7 @@ public class EnglishToString implements ConverterToString {
     }
 
     @Override
-    public String toStringFifthFormat(long num) {
+    public String toStringForthFormat(long num) {
         newInitialize(num);
         dateResult += getMonthName(dateInArray[5]) + "-" + dateInArray[4] + "-";
         if (dateInArray[6] <= 1000) {

@@ -2,22 +2,32 @@ package Сalendar.Scanner;
 
 import Сalendar.Config.Enams.DateFormats;
 import Сalendar.Config.Enams.Languages;
+import Сalendar.Config.Exeptions.MyExeption;
+import Сalendar.DateUtils.Converter.ToString.ConverterUtils;
 import Сalendar.UserInterface.UINavigator.MenuNavigator;
 
-
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static Сalendar.Config.Exeptions.MyExeption.ITEM_DOES_NOT_EXIST;
 
 public class MyScanner {
 
-    static private Scanner in = new Scanner(System.in);
-    private static int intChose;
-    private static String data;
 
-    public static long readData() {
-        data = in.nextLine();
-        return 0;
+    static private Scanner in = new Scanner(System.in);
+    private static int chosenVariant;
+
+    public long readData() {
+        String scan = scannline();
+        long result = MenuNavigator.getConfig().getFormat().getPrivateDecoder().decoder(scan);
+        if (result < 0) {
+            MenuNavigator.menu.exceptionSout(MyExeption.INCORRECT_INPUT_FORMAT);
+        }
+        return result;
+    }
+
+    public int[] readDateToArray() {
+        return ConverterUtils.longDecoder(readData());
     }
 
     public DateFormats setDateFormat() {
@@ -39,9 +49,7 @@ public class MyScanner {
     }
 
     public boolean continua() {
-
-        intChose = in.nextInt();
-        switch (intChose) {
+        switch (scannInt()) {
             case 1:
                 return true;
             case 0:
@@ -52,23 +60,41 @@ public class MyScanner {
         }
     }
 
-        public Languages setLanguage () {
-            intChose = in.nextInt();
-            switch (intChose) {
-                case 1:
-                    return Languages.RUSSIAN;
-                case 2:
-                    return Languages.ENGLISH;
-                case 0:
-                    System.exit(0);
-                default:
-                    MenuNavigator.menu.exceptionSout(ITEM_DOES_NOT_EXIST);
-                    MenuNavigator.menu.choseLanguage();
-                    return setLanguage();
-            }
-        }
-
-        public int mainMenu () {
-            return in.nextInt();
+    public Languages setLanguage() {
+        switch (scannInt()) {
+            case 1:
+                return Languages.RUSSIAN;
+            case 2:
+                return Languages.ENGLISH;
+            case 0:
+                System.exit(0);
+            default:
+                MenuNavigator.menu.exceptionSout(ITEM_DOES_NOT_EXIST);
+                MenuNavigator.menu.choseLanguage();
+                return setLanguage();
         }
     }
+
+    public String[] sortedMenu() {
+        MenuNavigator.menu.sortFirstMenu();
+        chosenVariant = scannInt();
+        String[] scans = new String[chosenVariant];
+        for (int i = 0; i < (scans.length); i++) {
+            MenuNavigator.menu.sortSecondMenu(i + 1);
+            scans[i] = scannline();
+        }
+
+        return scans;
+    }
+
+    public int scannInt() {
+        int a = in.nextInt();
+        in.nextLine();
+        return a;
+    }
+
+    public String scannline() {
+        return in.nextLine();
+    }
+
+}

@@ -1,8 +1,9 @@
 package Сalendar.Config.Enams;
 
+import lombok.Getter;
 import Сalendar.DateUtils.Converter.FromString.Decoder;
-import Сalendar.DateUtils.Converter.FromString.FormatValidators.*;
-import Сalendar.DateUtils.Converter.FromString.Validator;
+import Сalendar.FormatValidators.*;
+import Сalendar.FormatValidators.Validator;
 
 import java.util.Locale;
 
@@ -10,7 +11,7 @@ import static Сalendar.DateUtils.Converter.FromString.ConverterDefaultUtils.toL
 
 
 public enum DateFormats {
-    DD_MM_YY(decoder = str -> {
+    DD_MM_YY(1, decoder = str -> {
         str = str.trim();
         Validator validator = new FirstFormatValidator();
 
@@ -18,10 +19,17 @@ public enum DateFormats {
             return -1;
         }
         String[] dateArr = str.split("/");
-        return toLong(dateArr);
+        String[] result = new String[7];
+        for (int i = 0; i < 4; i++) {
+            result[i] = "00";
+        }
+        result[4] = dateArr[0];
+        result[5] = dateArr[1];
+        result[6] = dateArr[2];
+        return toLong(result);
     }),
 
-    M_D_YYYY(decoder = str -> {
+    M_D_YYYY(2, decoder = str -> {
         Validator validator = new SecondFormatValidator();
         str = str.trim();
 
@@ -30,14 +38,17 @@ public enum DateFormats {
         }
         String[] dateArr = str.split("/");
 
-        String temp = dateArr[0];
-        dateArr[0] = dateArr[1];
-        dateArr[1] = temp;
-
-        return toLong(dateArr);
+        String[] result = new String[7];
+        for (int i = 0; i < 4; i++) {
+            result[i] = "00";
+        }
+        result[4] = dateArr[1];
+        result[5] = dateArr[0];
+        result[6] = dateArr[2];
+        return toLong(result);
     }),
 
-    MMM_D_YY(decoder = str -> {
+    MMM_D_YY(3, decoder = str -> {
         str = str.trim();
         Validator validator = new ThirdFormatValidator();
         if (validator.validator(str)) return -1;
@@ -51,12 +62,20 @@ public enum DateFormats {
                 else if (m.getRussianName().toLowerCase(Locale.ROOT).
                         equals(strArr[0].toLowerCase(Locale.ROOT))) dateArr[1] = String.valueOf(m.getNum());
             }
-        } else dateArr[1] = "1";
+        }else dateArr[1] = "1";
         dateArr[2] = strArr[2];
-        return toLong(dateArr);
+
+        String[] result = new String[7];
+        for (int i = 0; i < 4; i++) {
+            result[i] = "00";
+        }
+        result[4] = dateArr[1];
+        result[5] = dateArr[0];
+        result[6] = dateArr[2];
+        return toLong(result);
     }),
 
-    DD_MMM_YYYY_Hours_MINUTES(decoder = str -> {
+    DD_MMM_YYYY_Hours_MINUTES(4, decoder = str -> {
         Validator validator = new FourthFormatValidator();
         str.trim();
         if (!validator.validator(str)) {
@@ -68,7 +87,7 @@ public enum DateFormats {
 
         if (sArr[2] != null) {
             String[] strArr = sArr[2].trim().split(" ");
-            date[3] = sArr[0];
+            date[2] = sArr[0];
             if (strArr.length == 2) {
                 if (strArr[1] != null) {
                     if (strArr[1].length() == 5 || strArr[1].length() == 7) {
@@ -92,21 +111,33 @@ public enum DateFormats {
                         equals(sArr[1].toLowerCase(Locale.ROOT))) date[1] = String.valueOf(m.getNum());
                 else if (m.getRussianName().toLowerCase(Locale.ROOT).
                         equals(sArr[1].toLowerCase(Locale.ROOT))) date[1] = String.valueOf(m.getNum());
+                else date[1] = "1";
             }
         } else date[1] = "1";
 
-        return toLong(date);
-    });
-    private static Decoder decoder;
-    private Decoder privateDecoder;
-    private long date;
 
-    DateFormats(Decoder decoder) {
+        String[] result = new String[7];
+        for (int i = 0; i < 4; i++) {
+            result[i] = date[date.length-i];
+        }
+        result[4] = date[0];
+        result[5] = date[1];
+        result[6] = date[2];
+        return toLong(result);
+    });
+
+    private static Decoder decoder;
+    @Getter
+    private Decoder privateDecoder;
+    @Getter
+    private int id;
+
+    DateFormats(int id, Decoder decoder) {
+        this.id = id;
         privateDecoder = decoder;
     }
 
     public long getDate(String str) {
         return privateDecoder.decoder(str);
     }
-
 }
