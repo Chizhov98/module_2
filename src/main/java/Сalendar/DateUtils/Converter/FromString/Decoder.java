@@ -1,5 +1,5 @@
 package Сalendar.DateUtils.Converter.FromString;
 
-public interface FromString {
+public interface Decoder {
     long decoder(String date);
 }

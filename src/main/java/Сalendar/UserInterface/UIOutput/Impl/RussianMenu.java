@@ -7,7 +7,7 @@ import Сalendar.UserInterface.UIOutput.UIMenu;
 public class RussianMenu implements UIMenu {
     @Override
     public void mainMenu() {
-        System.out.println("                           Гавное меню:\n" +
+        System.out.println("    Гавное меню:\n" +
                 "Пожалуйста выберите нужный вам пункт меню\n" +
                 "1. Найти разницу между датами.\n" +
                 "2. Вычитать из даты указаное время.\n" +
@@ -19,7 +19,7 @@ public class RussianMenu implements UIMenu {
 
     @Override
     public void choseFormatOfDate() {
-        System.out.println("Выберети формат представления даты:\\n" +
+        System.out.println("Выберети формат представления даты:\n" +
                 "1. дд/мм/гг - 01/12/21\n" +
                 "2. м/д/гггг - 3/4/2021\n" +
                 "3. ммм-д-гг - Март-4-21\n" +

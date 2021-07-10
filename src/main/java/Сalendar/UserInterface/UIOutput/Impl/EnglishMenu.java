@@ -6,7 +6,7 @@ import Сalendar.UserInterface.UIOutput.UIMenu;
 public class EnglishMenu implements UIMenu {
     @Override
     public void mainMenu() {
-        System.out.println("                           Maine menu\n" +
+        System.out.println("    Maine menu\n" +
                 "Please select the menu item you need.\n" +
                 "1. Find the difference between dates.\n" +
                 "2. Subtract the specified time from the date.\n" +

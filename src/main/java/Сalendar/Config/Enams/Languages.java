@@ -1,4 +1,4 @@
-package Сalendar.Config;
+package Сalendar.Config.Enams;
 
 import lombok.Getter;
 import Сalendar.UserInterface.UIOutput.Impl.EnglishMenu;

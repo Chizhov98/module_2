@@ -1,8 +1,7 @@
 package Сalendar.Scanner;
 
-import Сalendar.Config.Config;
-import Сalendar.Config.DateFormats;
-import Сalendar.Config.Languages;
+import Сalendar.Config.Enams.DateFormats;
+import Сalendar.Config.Enams.Languages;
 import Сalendar.UserInterface.UINavigator.MenuNavigator;
 
 
@@ -25,12 +24,12 @@ public class MyScanner {
         switch (in.nextInt()) {
             case 1:
                 return (DateFormats.DD_MM_YY);
-            /*case 2:
+            case 2:
                 return (DateFormats.M_D_YYYY);
             case 3:
                 return (DateFormats.MMM_D_YY);
             case 4:
-                return (DateFormats.DD_MMM_YYYY_Hours_MINUTES);*/
+                return (DateFormats.DD_MMM_YYYY_Hours_MINUTES);
             case 0:
                 System.exit(0);
             default:

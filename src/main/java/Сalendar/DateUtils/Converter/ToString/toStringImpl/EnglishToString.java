@@ -1,6 +1,6 @@
 package Сalendar.DateUtils.Converter.ToString.toStringImpl;
 
-import Сalendar.Config.Months;
+import Сalendar.Config.Enams.Months;
 import Сalendar.DateUtils.Converter.ToString.ConverterToString;
 import Сalendar.DateUtils.Converter.ToString.ConverterUtils;
 

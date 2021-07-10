@@ -1,8 +1,7 @@
 package Сalendar.UserInterface.UINavigator;
 
 import Сalendar.Config.Config;
-import Сalendar.Config.Exeptions.MyExeption;
-import Сalendar.Config.Languages;
+import Сalendar.Config.Enams.Languages;
 import Сalendar.Scanner.MyScanner;
 import Сalendar.UserInterface.UIOutput.UIMenu;
 

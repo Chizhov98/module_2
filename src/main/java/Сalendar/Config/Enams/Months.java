@@ -1,7 +1,6 @@
-package Сalendar.Config;
+package Сalendar.Config.Enams;
 
 import lombok.Getter;
-import org.jetbrains.annotations.Nullable;
 
 
 @Getter
