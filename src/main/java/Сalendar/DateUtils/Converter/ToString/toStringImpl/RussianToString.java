@@ -32,18 +32,17 @@ public class RussianToString implements ConverterToString {
     @Override
     public String toStringSecondFormat(long num) {
         newInitialize(num);
-        for (int i = 4; i < dateInArray.length; i++) {
-            if (i == 6 && dateInArray[i] <= 1000) {
-                if (dateInArray[i] <= 100) {
-                    dateResult += "00" + dateInArray[i] + "/";
-                } else {
-                    dateResult += "0" + dateInArray[i] + "/";
-                }
+        dateResult = dateInArray[5] + "/" + dateInArray[4] + "/";
+        if (dateInArray[6] <= 1000) {
+            dateResult += "0";
+            if (dateInArray[6] <= 100) {
+                dateResult += "0";
             }
-            dateResult += dateInArray[i] + "/";
+            if (dateInArray[6] <= 10) {
+                dateResult += "0";
+            }
         }
-        dateResult = dateResult.substring(0, dateResult.length() - 1);
-        return dateResult;
+        return dateResult += dateInArray[6];
     }
 
     @Override
@@ -59,17 +58,20 @@ public class RussianToString implements ConverterToString {
     @Override
     public String toStringForthFormat(long num) {
         newInitialize(num);
-        dateResult += getMonthName(dateInArray[5]) + "-" + dateInArray[4] + "-";
+        dateResult += +dateInArray[4] + "-" + getMonthName(dateInArray[5]) + "-";
         if (dateInArray[6] <= 1000) {
+            dateResult += "0";
             if (dateInArray[6] <= 100) {
-                dateResult += "00" + dateInArray[6];
-            } else {
-                dateResult += "0" + dateInArray[6];
+                dateResult += "0";
+            }
+            if (dateInArray[6] <= 10) {
+                dateResult += "0";
             }
         }
+        dateResult += dateInArray[6];
 
 
-        return dateResult += "  " + getTime(new int[]{dateInArray[3], dateInArray[2]});
+        return dateResult += " " + getTime(new int[]{dateInArray[2], dateInArray[3]});
 
 
     }

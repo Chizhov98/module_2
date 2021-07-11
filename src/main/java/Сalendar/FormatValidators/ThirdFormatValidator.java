@@ -2,14 +2,15 @@ package Сalendar.FormatValidators;
 
 import Сalendar.Config.Enams.Months;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 public class ThirdFormatValidator implements Validator {
     @Override
-    public  boolean validator(String str) {
+    public boolean validator(String str) {
         String[] strArr = str.split("-");
         if (strArr.length != 3) return false;
-        if (strArr[0] != null) {
+        if (!strArr[0].equals("")) {
             boolean monthIsGood = false;
             for (Months m : Months.values()) {
                 if (m.getEnglishName().toLowerCase(Locale.ROOT).
@@ -20,9 +21,9 @@ public class ThirdFormatValidator implements Validator {
             if (!monthIsGood) return false;
         }
         for (int i = 1; i < strArr.length; i++) {
-            if (strArr[i] != null) {
+            if (!strArr[i].equals("")) {
                 if (strArr[1].length() > 2) return false;
-                if (strArr[i].matches("\\d+")) return false;
+                if (!strArr[i].matches("\\d+")) return false;
             }
         }
         return true;

@@ -20,8 +20,9 @@ public class MyScanner {
     public long readData() {
         String scan = scannline();
         long result = MenuNavigator.getConfig().getFormat().getPrivateDecoder().decoder(scan);
-        if (result < 0) {
+        if (result <= 0) {
             MenuNavigator.menu.exceptionSout(MyExeption.INCORRECT_INPUT_FORMAT);
+            if (continua()) MenuNavigator.mainMenu();
         }
         return result;
     }
@@ -31,7 +32,7 @@ public class MyScanner {
     }
 
     public DateFormats setDateFormat() {
-        switch (in.nextInt()) {
+        switch (scannInt()) {
             case 1:
                 return (DateFormats.DD_MM_YY);
             case 2:
@@ -83,14 +84,19 @@ public class MyScanner {
             MenuNavigator.menu.sortSecondMenu(i + 1);
             scans[i] = scannline();
         }
-
         return scans;
     }
 
-    public int scannInt() {
-        int a = in.nextInt();
-        in.nextLine();
-        return a;
+    public int scannInt()throws RuntimeException {
+        try {
+            String a = in.nextLine();
+            return Integer.valueOf(a);
+
+        }catch ( RuntimeException NumberFormatException){
+            MenuNavigator.menu.exceptionSout(ITEM_DOES_NOT_EXIST);
+            if(continua())MenuNavigator.mainMenu();
+        }
+        return -1;
     }
 
     public String scannline() {

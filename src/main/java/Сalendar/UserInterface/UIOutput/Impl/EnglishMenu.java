@@ -24,7 +24,7 @@ public class EnglishMenu implements UIMenu {
                 "2. m/d/yyyy - 3/4/2021\n" +
                 "3. mmm-d-yy - Март-4-21\n" +
                 "4. dd-mmm-yyyy 00:00 - 09-Апрель-1789 00:00\n" +
-                "0. Return to main menu");
+                "0. Exit program");
     }
 
     @Override

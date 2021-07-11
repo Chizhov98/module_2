@@ -4,15 +4,11 @@ import lombok.Getter;
 import Сalendar.Config.Config;
 import Сalendar.Config.Enams.Languages;
 import Сalendar.DateUtils.Calculator.Calculator;
-import Сalendar.DateUtils.Converter.FromString.ConverterDefaultUtils;
 import Сalendar.DateUtils.Converter.ToString.ConverterToString;
 import Сalendar.DateUtils.Converter.ToString.ConverterUtils;
 import Сalendar.Scanner.MyScanner;
 import Сalendar.UserInterface.UIOutput.UIMenu;
 
-import java.util.Arrays;
-
-import static Сalendar.Config.Exeptions.MyExeption.INCORRECT_INPUT_FORMAT;
 import static Сalendar.Config.Exeptions.MyExeption.ITEM_DOES_NOT_EXIST;
 
 public class MenuNavigator {
@@ -20,6 +16,7 @@ public class MenuNavigator {
     private static final Config config = new Config();
     public static UIMenu menu = config.setMenuLanguage(Languages.RUSSIAN);
     public static ConverterToString converter = config.setCconverter(Languages.RUSSIAN);
+    @Getter
     private static final MyScanner scanner = new MyScanner();
     private static Calculator calculator = new Calculator();
 
@@ -43,16 +40,19 @@ public class MenuNavigator {
         String[] scans = scanner.sortedMenu();
         long[] result = calculator.sorted(scans);
         for (int i = 0; i < scans.length; i++) {
-            System.out.println((i+1)+")"+ ConverterUtils.resultToString(result[i]));
+            System.out.println((i + 1) + ")" + ConverterUtils.resultToString(result[i]));
         }
+        menu.operationComplete();
+        if (scanner.continua()) mainMenu();
     }
 
     private static void differenceMenu() {
         menu.differenceMenuFirst();
-       int[] firstDate = scanner.readDateToArray();
+        int[] firstDate = scanner.readDateToArray();
         menu.differenceMenuSecond();
         int[] secondDate = scanner.readDateToArray();
-        menu.toSoutForParts(calculator.difference(firstDate,secondDate));
+        menu.toSoutForParts(calculator.difference(firstDate, secondDate));
+        menu.operationComplete();
         if (scanner.continua()) mainMenu();
     }
 
@@ -60,7 +60,6 @@ public class MenuNavigator {
         menu.operation();
         int[] date = scanner.readDateToArray();
         menu.addTime();
-        menu.soutResalt(ConverterUtils.resultToString(                ConverterDefaultUtils.allToAbsoluteSeconds(date)));
         menu.seconds();
         int[] time = new int[7];
         time[0] = 0;

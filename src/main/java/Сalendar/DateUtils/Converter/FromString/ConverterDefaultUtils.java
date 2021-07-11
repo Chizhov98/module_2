@@ -4,7 +4,7 @@ public class ConverterDefaultUtils {
     private static int[] transformToIntArr(String[] dates) {
         int[] date = new int[dates.length];
         for (int i = 0; i < date.length; i++) {
-            if (dates[i] != null) {
+            if (!dates[i].equals("")) {
                 date[i] = Integer.valueOf(dates[i]);
             } else
                 date[i] = 0;
@@ -19,14 +19,16 @@ public class ConverterDefaultUtils {
         if ((dates[0] > 31) && (dates[1] == 1 || dates[1] == 3 || dates[1] == 5 || dates[1] == 7 || dates[1] == 8 || dates[1] == 10 || dates[1] == 12)
                 || ((dates[0] > 30) && (dates[1] == 4 || dates[1] == 6 || dates[1] == 9 || dates[1] == 11))
                 || (dates[0] > 28 && dates[1] == 2 && dates[3] % 4 != 0)
-                || dates[0] > 29 && dates[1] == 2 && dates[3] % 4 == 0) return new int[]{-1, -1, -1, -1, -1, -1, -1};
+                || (dates[0] > 29 && dates[1] == 2 && dates[3] % 4 == 0)) return new int[]{-1, -1, -1, -1, -1, -1, -1};
 
         return dates;
     }
 
 
     private static int yearsToDays(int years) {
-        return (years * 365) + (years / 4)+1;
+        int result = years % 4 == 0 ? 0 : 1;
+        result += (years * 365) + (years / 4);
+        return result;
     }
 
     private static int monthsToDays(int months, boolean isLeapYear) {
@@ -76,9 +78,9 @@ public class ConverterDefaultUtils {
 
     private static String[] motNullDate(String[] date) {
         for (int i = 0; i < date.length; i++) {
-            if (date[i] == null && i != 2) date[i] = "1";
+            if ((date[i] == null || date[i].equals("")) && i != 2) date[i] = "1";
         }
-        if (date[2] == null) date[2] = "0";
+        if (date[2].equals("")) date[2] = "0";
         return date;
     }
 }
